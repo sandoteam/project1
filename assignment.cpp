@@ -247,7 +247,15 @@ int main()
     cout << "Elements of the list are: ";
     list.printList();
     cout << endl;
-    
+    cout <<"TIME COMPLECITY OF GIVEN FUNCTIONS"<<endl;
+ cout <<"Time complexity of inselting at the front is T(n)=0(1)"<<endl;
+  cout <<"Time complexity of inselting at the back is T(n)=0(1)"<<endl;\
+   cout <<"Time complexity of inseltig"<<endl;
+    cout <<"Time complexity of inselting at the front is T(n)=0(1)"<<endl;
+     cout <<"Time complexity of searching a given number is T(n)=0(n)"<<endl;
+     cout <<"Time complexity of deleting a given number for best case is T(n)=-Q(1) and for wors case is T(n)=-0(n)"<<endl;
+   cout <<"Time complexity of reversing list T(n)=0(n)"<<endl;
+   cout <<"Time complexity of removing duplicates  is T(n)=0(n²)"<<endl;
 
     return 0;
 }
