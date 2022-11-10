@@ -10,7 +10,7 @@ struct node {
 
 class LinkedList
 {
-
+    // Head and Tail pointers
     node* head;
     node* tail;
 
@@ -22,8 +22,9 @@ class LinkedList
       tail = NULL;
     }
     
-	// Time Complexity: O(n)
+    // Parameterized constructor // Time Complexity: O(n)
     LinkedList(int size, LinkedList &li){
+    	
     	
     	srand(time(0));
     	
@@ -38,7 +39,7 @@ class LinkedList
 		this->tail = tail;
 	}
     
-	//Time Complexity: O(n)
+    //Linked list destructor //Time Complexity: O(n)
     ~LinkedList(){
 	node *current = new node;
 	current = head;
@@ -50,7 +51,7 @@ class LinkedList
 };
     
     
-    //Inserting at the start //Time Complexity: O(1)
+    //Inserting at the start of the list //Time Complexity: O(1)
     void insert_start(int val) {
       node* temp = new node();
       temp->data = val;
@@ -81,7 +82,7 @@ class LinkedList
 	}
 }
 
-    // Boolean search function
+    // Search function, loop over function and return true if the value is found
     bool search(int val) // Time Complexity: O(n)
     {
     node* current = head; // Initialize current
@@ -92,16 +93,17 @@ class LinkedList
         cout<<endl;
     	current=current->next;
 	}
-
+}
 
 	return false;
-	cout<<"Value "<<val<<" is not available in this list"<<endl;}
+	cout<<"Value "<<val<<" is not available in this list"<<endl;
 
 }
 
 
         void deleteValue(int val) //Time Complexity: O(n)
     {
+      // If the head is to be deleted
       if (head->data == val)
       {
         delete head;
@@ -109,25 +111,26 @@ class LinkedList
         return;
       }
 
+      // If there is only one element in the list
       if (head->next == NULL)
       {
-        
+        // If the head is to be deleted. Assign null to the head
         if (head->data == val)
         {
           delete head;
           head = NULL;
           return;
         }
-       
+        // else print, value not found
         cout << "Value not available!" << endl;
         return;
       }
 
-      // Else loop over the list
+      // Else loop over the list and search for the node to delete
       node* temp = head;
       while(temp->next!= NULL)
       {
-        // When node is found, delete the node and modify the pointers to bridge gap between nodes in list
+        // When node is found, delete the node and modify the pointers
         if (temp->next->data == val)
         {
           node* temp_ptr = temp->next->next;
@@ -138,20 +141,23 @@ class LinkedList
         temp = temp->next;
       }
 
+      // Else, the value was neve in the list
       cout << "Value not available" << endl;
     }
     
-    	//Time Complexity: O(n)
-        void display()
+    //List elements of the singly linked list
+    
+        void display() //Time Complexity: O(n)
 {
 	node* temp = head;
 
+	// Check for empty list.
 	if (head == NULL) {
 		cout << "List empty" << endl;
 		return;
 	}
 
-	// Traverse through the list
+	// Traverse the list.
 	while (temp != NULL) {
 		cout << temp->data << " ";
 		temp = temp->next;
@@ -159,6 +165,7 @@ class LinkedList
 	cout<<endl<<endl;
 }
 
+    /* Function to reverse the linked list */
     void reverseList() //Time Complexity: O(n)
     {
         // Initialize current, previous and next pointers
@@ -177,8 +184,8 @@ class LinkedList
         head = prev;
     }
     
-    //Removing consecutive duplicates  //Time Complexity: O(n^2)
-void removeDuplicate() {  
+    //removeDuplicate() will remove duplicate nodes from the list  
+void removeDuplicate() {  //Time Complexity: O(n^2)
     //Node current will point to head  
     struct node *current = head, *index = NULL, *temp = NULL;  
       
@@ -187,14 +194,20 @@ void removeDuplicate() {
     }  
     else {  
         while(current != NULL){  
+            //Node temp will point to previous node to index.  
             temp = current;  
+            //Index will point to node next to current  
             index = current->next;  
               
             while(index != NULL) {  
+                //If current node's data is equal to index node's data  
                 if(current->data == index->data) {  
+                    //Here, index node is pointing to the node which is duplicate of current node  
+                    //Skips the duplicate node by pointing to next node  
                     temp->next = index->next;  
                 }  
                 else {  
+                    //Temp will point to previous node of index.  
                     temp = index;  
                 }  
                 index = index->next;  
@@ -211,43 +224,44 @@ int main(){
 	LinkedList list;
 	int val_size, val_start, val_end, val_search, val_delete;
 	
-	cout<<"Please enter the size of your initial linked list: ";
+	cout<<"This is the start of a set of operations aimed at implementing and manipulating a singly linked list in C++"<<endl<<endl;
+	cout<<"Please enter the size (in number value) of your desired linked list: ";
 	cin>>val_size;
 	
 	LinkedList(val_size, list);
-	cout<<"List: ";
+	cout<<"Initial list: ";
 	list.display();
 	
 	
-	cout<<"Let's start our operations now!"<<endl<<endl;
+	cout<<"We begin to manipulate our linkedlist!"<<endl<<endl;
 	
-	cout<<"Enter any number of your choice to insert at the start of the linked list: ";
+	cout<<"First, we'll start by inserting an element at the start of our linked list. Enter any number of your choice: ";
 	cin>>val_start;
 	list.insert_start(val_start);
-	cout<<"Linked list after inserting "<<val_start<<" on the beginning!: ";
+	cout<<"Linked list after inserting "<<val_start<<" at the start!: ";
 	list.display();
 	
-	cout<<"Enter a value to insert at the end of the list: ";
+	cout<<"Enter a value to insert at the end of our list: ";
 	cin>>val_end;
 	list.insert_end(val_end);
-	cout<<endl<<"Displaying updated list after insertion at the end: ";
+	cout<<endl<<"Our updated list: ";
 	list.display();
 	
-	cout<<"Enter a value to check if it is available in our list: ";
+	cout<<"Next up, we are going to search for a value! Enter a value to check if it is available in our list: ";
 	cin>>val_search;
 	list.search(val_search);
 	list.display();
 	
-	cout<<"Enter a value you want to remove from the list: ";
+	cout<<"Enter a value you want to delete from the list: ";
 	cin>>val_delete;
 	list.deleteValue(val_delete);
 	list.display();
 	
-	cout<<"This list is updated to remove consecutive duplicates: ";
+	cout<<"If you noticed any consecutive duplicate values, we have removed them to get this updated list: ";
 	list.removeDuplicate();
 	list.display();
 	
-	cout<<"This is a reversed list: ";
+	cout<<"Lastly, we are going to reverse the list! This is a reversal of the latest list we had: ";
 	list.reverseList();
 	list.display();
 	
